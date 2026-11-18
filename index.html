@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DYGA CHAT</title>
+<link rel="stylesheet" href="css/style.css"></head><body><div id="sp"></div>
+<nav aria-label="Secciones"><span class="brand">DYGA CHAT</span><div class="tabs" role="tablist"><button role="tab" data-t="cli" aria-selected="true">Clientes</button><button role="tab" data-t="pre" aria-selected="false">Préstamos y pagos</button><button role="tab" data-t="mora" aria-selected="false">En mora</button><button role="tab" data-t="que" aria-selected="false">Quejas y reclamos</button><button role="tab" data-t="seg" aria-selected="false">Seguridad</button><button role="tab" data-t="ase" aria-selected="false">Asesores</button><button role="tab" data-t="rep" aria-selected="false">Reportes</button><button role="tab" data-t="inf" aria-selected="false">Información</button></div></nav>
+<header><canvas id="net"></canvas><img src="img/imagen1.jpg" alt="Mujer revisando una tarjeta bancaria frente a un computador portátil"><div class="ht"><small>Proyecto de ingeniería para atención al cliente</small><h1>DYGA CHAT</h1><p class="lead">Registra, prioriza y resuelve las solicitudes de los clientes del banco.</p>
+<p class="typ">Hoy puedes <b id="tp"></b><i class="cur"></i></p>
+<div class="chips"><span>Prioridad automática</span><span>Asignación de asesores</span><span>Control de mora</span><span>Reportes con gráficas</span></div>
+<div class="cta"><button class="btn y" data-go="cli" type="button">Registrar cliente</button><button class="btn g" data-go="seg" type="button">Reportar fraude</button><a class="btn g" href="#integrantes">Ver integrantes</a></div></div></header>
+
+<main class="wrap">
+<div class="kpis" id="kp"></div>
+<div id="msg" class="msg" role="status"></div>
+
+<section id="cli" class="panel on"><h2>Registrar cliente</h2>
+<div class="card"><form id="fc">
+<label>Nombre<input id="nom" required></label>
+<label>Apellido<input id="ape" required></label>
+<label>Cédula<input id="ced" required inputmode="numeric" pattern="[0-9]{5,12}" maxlength="12" title="Solo números, de 5 a 12 dígitos"></label>
+<label>Solicitud<select id="sol"><option>Pregunta</option><option>Queja</option><option>Reclamo</option><option>Información</option></select></label>
+<label>Prioridad<select id="pri"><option value="1">Alta</option><option value="2">Media</option><option value="3" selected>Baja</option></select></label>
+<button class="btn">Registrar</button></form></div>
+<h2>Clientes registrados</h2><input id="bus" type="search" placeholder="Buscar por nombre o cédula" aria-label="Buscar cliente"><div class="card tw"><table><thead><tr><th>#</th><th>Nombre</th><th>Apellido</th><th>Cédula</th><th>Solicitud</th><th>Prioridad</th><th>Estado</th><th></th></tr></thead><tbody id="tc"></tbody></table><p id="ec" class="mut">No hay clientes registrados.</p></div></section>
+
+<section id="pre" class="panel"><h2>Cliente</h2>
+<div class="card"><label>Elige un cliente<select id="sc"></select></label><p id="info" class="mut"></p></div>
+<div class="card"><h2>Registrar préstamo</h2><form id="fp"><label>Monto<input id="mon" type="number" min="1" step="any" required></label><label>Tasa de interés (%)<input id="tas" type="number" min="0" step="any" required></label><button class="btn">Registrar préstamo</button></form></div>
+<div class="card"><h2>Registrar pago</h2><form id="fg"><label>Monto del pago<input id="pag" type="number" min="1" step="any" required></label><button class="btn">Registrar pago</button></form></div>
+<div class="card"><h2>Registrar mora</h2><form id="fm"><label>Días de atraso (0 = al día)<input id="dia" type="number" min="0" step="1" required></label><button class="btn">Registrar mora</button></form></div></section>
+
+<section id="mora" class="panel"><h2>Clientes en mora</h2>
+<div class="card tw"><table><thead><tr><th>Nombre</th><th>Cédula</th><th>Saldo pendiente</th><th>Días</th><th>Nivel</th></tr></thead><tbody id="tm"></tbody></table><p id="em" class="mut">No hay clientes en mora.</p></div></section>
+
+
+<section id="que" class="panel"><h2>Nueva queja o reclamo</h2>
+<div class="card"><form id="fq">
+<label>Cliente<select id="qc"></select></label>
+<label>Tipo<select id="qt"><option>Queja</option><option>Reclamo</option><option>Reporte de fraude</option><option>Bloqueo de tarjeta</option><option>Cobro indebido</option><option>Otro</option></select></label>
+<label style="grid-column:1/-1">Descripción<input id="qd" required maxlength="200" placeholder="Cuenta qué pasó"></label>
+<button class="btn">Registrar</button></form>
+<p class="mut" style="margin:10px 0 0">La prioridad se define sola: es alta si el texto menciona fraude, estafa, robo, bloqueo o suplantación; media si menciona cobro, error o demora; baja en los demás casos.</p></div>
+<h2>Casos registrados</h2>
+<div class="card tw"><table><thead><tr><th>#</th><th>Cliente</th><th>Tipo</th><th>Descripción</th><th>Prioridad</th><th>Estado</th><th>Asesor</th><th></th></tr></thead><tbody id="tq"></tbody></table><p id="eq" class="mut">No hay casos registrados.</p></div></section>
+
+<section id="inf" class="panel"><h2>Sobre el sistema</h2>
+<div class="card"><p>Este sistema organiza la atención al cliente de un banco. Permite registrar clientes, recibir quejas y reclamos, dar prioridad a los casos urgentes y llevar el control de préstamos, pagos y mora.</p></div>
+<h2>Objetivo</h2><div class="card"><p>Registrar, organizar y priorizar las solicitudes de los clientes de un banco, y hacerles seguimiento hasta que queden atendidas.</p></div>
+<h2>Qué puedes hacer</h2><div class="card"><ul>
+<li><b>Clientes:</b> registrar nombre, apellido, cédula, tipo de solicitud y prioridad.</li>
+<li><b>Quejas y reclamos:</b> registrar el caso, ver su prioridad y moverlo de pendiente a en proceso y atendida.</li>
+<li><b>Seguridad:</b> los reportes de estafa, fraude, bloqueo de tarjeta y actividad sospechosa quedan con prioridad alta.</li><li><b>Asesores:</b> cada caso se asigna al asesor de la especialidad con menos carga.</li><li><b>Datos:</b> se guardan en este navegador y puedes buscar o eliminar clientes.</li>
+<li><b>Préstamos y pagos:</b> calcular el total con interés y descontar cada pago del saldo.</li>
+<li><b>Mora:</b> clasificarla en leve (hasta 30 días), moderada (hasta 90) o grave.</li>
+<li><b>Reportes:</b> ver totales de clientes, casos, dinero cobrado, por cobrar y morosidad.</li></ul></div>
+<h2>Conclusión</h2><div class="card"><p>El sistema ayuda a estructurar las solicitudes, identificar cuáles son más urgentes y tener a la vista el estado de cada cliente, para dar una atención más ágil y ordenada.</p></div></section>
+
+<section id="seg" class="panel"><h2>Reportar un caso de seguridad</h2>
+<div class="card"><form id="fs"><label>Cliente<select id="sk"></select></label>
+<label>Tipo<select id="st"><option>Posible estafa</option><option>Reporte de fraude</option><option>Bloqueo de tarjeta</option><option>Actividad sospechosa</option></select></label>
+<label style="grid-column:1/-1">Descripción<input id="sd" required maxlength="200" placeholder="Cuenta qué pasó"></label>
+<button class="btn">Registrar reporte</button></form>
+<p class="mut" style="margin:10px 0 0">Todos los reportes de seguridad quedan con prioridad alta y se asignan a un asesor de fraude y seguridad.</p></div>
+<h2>Reportes de seguridad</h2><div class="card tw"><table><thead><tr><th>Cliente</th><th>Tipo</th><th>Descripción</th><th>Asesor</th><th>Estado</th><th></th></tr></thead><tbody id="ts"></tbody></table><p id="es" class="mut">No hay reportes de seguridad.</p></div></section>
+
+<section id="ase" class="panel"><h2>Registrar asesor</h2>
+<div class="card"><form id="fa"><label>Nombre<input id="an" required maxlength="60"></label>
+<label>Especialidad<select id="ae"><option>Quejas y reclamos</option><option>Fraude y seguridad</option><option>Préstamos y mora</option><option>Información general</option></select></label>
+<button class="btn">Registrar asesor</button></form>
+<p class="mut" style="margin:10px 0 0">Los casos se asignan solos al asesor de la especialidad que tenga menos casos activos. Cada asesor atiende hasta 3 a la vez.</p></div>
+<h2>Asesores</h2><div class="card tw"><table><thead><tr><th>Nombre</th><th>Especialidad</th><th>Casos activos</th><th>Disponibilidad</th></tr></thead><tbody id="ta"></tbody></table><p id="ea" class="mut">No hay asesores registrados.</p></div></section>
+
+<section id="rep" class="panel"><h2>Reporte del banco</h2><div class="grid" id="gr"></div><h2 style="margin-top:26px">Gráficas</h2><div class="grid" id="ch" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"></div><p style="margin-top:24px"><button id="rst" class="btn del" type="button">Borrar todos los datos</button></p></section>
+</main>
+
+<footer id="integrantes"><div class="wrap"><h2 class="ft">Integrantes</h2>
+<p class="fs">Proyecto académico DYGA CHAT, UNIMINUTO, Corporación Universitaria Minuto de Dios.</p>
+<div class="team">
+<article class="mem"><img src="img/imagen2.jpg" alt="Retrato de Yessica Valentina Tole Tole"><div><h3>Yessica Valentina Tole Tole</h3><p class="r">Ingeniería en Ciencia de Datos e IA</p><span class="tag">Primer semestre</span></div></article>
+<article class="mem"><img src="img/imagen3.jpg" alt="Retrato de Ashly Valentina Herrera Bossa" style="object-position:50% 30%"><div><h3>Ashly Valentina Herrera Bossa</h3><p class="r">Ingeniería en Ciencia de Datos e IA</p></div></article>
+<article class="mem"><img src="img/imagen4.jpg" alt="Retrato de Germayoni Andreya Carreño Cuberos"><div><h3>Germayoni Andreya Carreño Cuberos</h3><p class="r">Ingeniería en Ciencia de Datos e IA</p></div></article>
+<article class="mem"><img src="img/imagen5.jpg" alt="Retrato de David Alexander Henao Cepeda"><div><h3>David Alexander Henao Cepeda</h3><p class="r">Ingeniería en Ciencia de Datos e IA</p></div></article>
+</div></div></footer>
+
+<button id="mvt" class="mvt" type="button">Movimiento: sí</button>
+<button id="ayuda" class="help" type="button">Ayuda</button>
+<script src="js/app.js"></script></body></html>
